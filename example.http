@@ -1,0 +1,73 @@
+#############
+# Register Patients
+#############
+
+POST http://localhost:3000/patient/registerA1
+content-type: application/json
+
+{
+    "_id": "ID01",
+    "name": "nidhi",
+    "email": "nidhi@gmail.com",
+    "token": "nidhipassword"
+}
+
+###
+
+POST http://localhost:3000/patient/registerA2
+content-type: application/json
+
+{
+    "_id": "ID02",
+    "name": "ayan",
+    "email": "ayan@gmail.com",
+    "token": "ayanpassword"
+}
+
+###
+
+POST http://localhost:3000/patient/registerA3
+content-type: application/json
+
+{
+    "_id": "ID03",
+    "name": "gautam",
+    "email": "gautam@gmail.com",
+    "token": "gautampassword"
+}
+
+
+
+#############
+# Login Patients
+#############
+
+POST http://localhost:3000/patient/loginA1
+content-type: application/json
+
+{
+    "_id": "ID01",
+    "token": "nidhipassword"
+}
+
+###
+
+POST http://localhost:3000/patient/loginA2
+content-type: application/json
+
+{
+    "_id": "ID02",
+    "token": "ayanpassword"
+}
+
+###
+
+POST http://localhost:3000/patient/loginA3
+content-type: application/json
+
+{
+    "_id": "ID03",
+    "token": "gautampassword"
+}
+
+### 
