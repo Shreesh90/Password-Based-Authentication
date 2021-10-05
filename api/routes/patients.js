@@ -10,8 +10,8 @@ const bcrypt = require('bcrypt'); // For hashing passwords
 app.use(express.json());
 app.use(cors());
 
-SALT = "groupNumberTen"
 
+// Approach 1: UserID and Password file
 router.post('/registerA1', (req, res, next) => {
     Patient.find({_id: req.body._id})
         .exec()
@@ -65,7 +65,7 @@ router.post('/loginA1', (req, res, next) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
-
+// Approach 2: Hashing
 router.post('/registerA2', (req, res, next) => {
     Patient.find({_id: req.body._id})
         .exec()
@@ -75,11 +75,22 @@ router.post('/registerA2', (req, res, next) => {
                     message: "Patient Already Exists!"
                 });
             } else {
+                var new_token;
+                var original_token= req.body.token;
+                var hash=5381;
+                var c;
+                for(c=0;c< original_token.length;c++){
+                    hash=(hash<<5 +hash)+ (original_token.charCodeAt(c)+1);
+                }
+                new_token=hash;
+                console.log(original_token);
+                console.log(new_token);
+
                 const user = new Patient({
                     _id: req.body._id,
                     name: req.body.name,
                     email: req.body.email,
-                    token: req.body.token + SALT
+                    token: new_token
                 })
                 user
                     .save()
@@ -106,7 +117,16 @@ router.post('/loginA2', (req, res, next) => {
                 message: "Auth Failed"
             });
         }
-        if(req.body.token + SALT === user[0].token){
+        let new_token;
+        let original_token= req.body.token;
+        let hash=5381;
+        var c;
+        for(c=0;c< original_token.length;c++){
+            hash=(hash<<5 +hash)+ (original_token.charCodeAt(c)+1);
+        }
+        new_token=hash;
+
+        if(String(new_token) === String(user[0].token)){
             return res.status(200).json({
                 message: "Auth Successful",
             })
@@ -119,6 +139,7 @@ router.post('/loginA2', (req, res, next) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
+// Approach 3: Salting and Hashing
 router.post('/registerA3', (req, res, next) => {
     Patient.find({_id: req.body._id})
         .exec()
