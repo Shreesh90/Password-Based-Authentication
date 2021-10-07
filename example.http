@@ -2,6 +2,7 @@
 # Register Patients
 #############
 
+# APPROACH 1 REGISTER
 POST http://localhost:3000/patient/registerA1
 content-type: application/json
 
@@ -14,6 +15,7 @@ content-type: application/json
 
 ###
 
+# APPROACH 2 REGISTER
 POST http://localhost:3000/patient/registerA2
 content-type: application/json
 
@@ -26,6 +28,7 @@ content-type: application/json
 
 ###
 
+# APPROACH 3 REGISTER
 POST http://localhost:3000/patient/registerA3
 content-type: application/json
 
@@ -42,6 +45,7 @@ content-type: application/json
 # Login Patients
 #############
 
+# APPROACH 1 LOGIN
 POST http://localhost:3000/patient/loginA1
 content-type: application/json
 
@@ -52,6 +56,7 @@ content-type: application/json
 
 ###
 
+# APPROACH 2 LOGIN
 POST http://localhost:3000/patient/loginA2
 content-type: application/json
 
@@ -62,6 +67,7 @@ content-type: application/json
 
 ###
 
+# APPROACH 3 LOGIN
 POST http://localhost:3000/patient/loginA3
 content-type: application/json
 
